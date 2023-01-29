@@ -1,11 +1,11 @@
 import React from "react";
 
-function GifList() {
+function GifList({Image}) {
     return (
         <div>
             <h1>Gif List</h1>
             <ul>
-                
+                {Image}
             </ul>
         </div>
     )

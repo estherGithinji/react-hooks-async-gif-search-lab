@@ -3,18 +3,22 @@ import GifList from "./GifList";
 import GifSearch from "./GifSearch";
 
 function GifListContainer() {
-    const [gif, setGif] = useState([])
+    const [gifList, setGifList] = useState([])
+    console.log(gifList);
 
     useEffect(() => {
-         fetch(" http://localhost:3000/data")
+         fetch("https://api.giphy.com/v1/gifs/search?api_key=Hdyk4y8TLduTtLOk5uzhNQ93HBpHUrcd&q=gif&limit=25&offset=0&rating=g&lang=en")
          .then(response => response.json())
-         .then(data => setGif(data))
+         .then(data => {
+            //show just 3 gifs
+            const gifArray = data.data.slice(0,3)
+            setGifList(gifArray)
+         })
     }, []);
 
     return (
         <div className="gif-list-container">
-            <GifSearch/>
-            <GifList/>
+             <GifList gifs={gifList}/>
         </div>
     )
 }
